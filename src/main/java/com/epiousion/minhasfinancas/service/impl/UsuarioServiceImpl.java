@@ -1,10 +1,14 @@
 package com.epiousion.minhasfinancas.service.impl;
 
+import com.epiousion.minhasfinancas.exception.ErroAutenticacao;
 import com.epiousion.minhasfinancas.exception.RegraNegocioException;
 import com.epiousion.minhasfinancas.model.entity.Usuario;
 import com.epiousion.minhasfinancas.model.repository.UsuarioRepository;
 import com.epiousion.minhasfinancas.service.UsuarioService;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -18,12 +22,22 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario autenticar(String email, String senha) {
-        return null;
+        Optional<Usuario> usuario = repository.findByEmail(email);
+
+        if(!usuario.isPresent()){
+            throw new ErroAutenticacao("Usuário não encontrado para o email não informado.");
+        }
+        if(!usuario.get().getSenha().equals(senha)){
+            throw new ErroAutenticacao("Senha inválida.");
+        }
+        return usuario.get();
     }
 
     @Override
+    @Transactional
     public Usuario salvarUsuario(Usuario usuario) {
-        return null;
+        validarEmail(usuario.getEmail());
+        return repository.save(usuario);
     }
 
     @Override
