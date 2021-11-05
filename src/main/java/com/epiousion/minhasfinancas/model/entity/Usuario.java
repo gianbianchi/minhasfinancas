@@ -3,6 +3,9 @@ package com.epiousion.minhasfinancas.model.entity;
 import javax.persistence.*;
 
 import lombok.*;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "usuario" , schema = "financas")

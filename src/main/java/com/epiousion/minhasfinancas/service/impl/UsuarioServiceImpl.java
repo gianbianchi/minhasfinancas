@@ -25,7 +25,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Optional<Usuario> usuario = repository.findByEmail(email);
 
         if(!usuario.isPresent()){
-            throw new ErroAutenticacao("Usuário não encontrado para o email não informado.");
+            throw new ErroAutenticacao("Usuário não encontrado para o email informado.");
         }
         if(!usuario.get().getSenha().equals(senha)){
             throw new ErroAutenticacao("Senha inválida.");
@@ -44,7 +44,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     public void validarEmail(String email) {
         boolean existe = repository.existsByEmail(email);
         if (existe){
-            throw new RegraNegocioException("Já existe um usuário cadastrado com este email");
+            throw new RegraNegocioException("Já existe um usuário cadastrado com este email.");
         }
     }
 }
