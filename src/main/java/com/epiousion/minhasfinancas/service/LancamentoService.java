@@ -3,7 +3,9 @@ package com.epiousion.minhasfinancas.service;
 import com.epiousion.minhasfinancas.model.entity.Lancamento;
 import com.epiousion.minhasfinancas.model.enums.StatusLancamento;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 public interface LancamentoService {
 
@@ -15,7 +17,11 @@ public interface LancamentoService {
 
     List<Lancamento> buscar(Lancamento lancamentoFiltro);
 
-    void autalizarStatus(Lancamento lancamento, StatusLancamento status);
+    void atualizarStatus(Lancamento lancamento, StatusLancamento status);
 
     void validar(Lancamento lancamento);
+
+    Optional<Lancamento> obterPorId(Long id);
+
+    BigDecimal obterSaldoPorUsuario(Long id);
 }

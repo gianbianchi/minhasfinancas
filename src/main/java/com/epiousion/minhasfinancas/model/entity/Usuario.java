@@ -1,11 +1,11 @@
 package com.epiousion.minhasfinancas.model.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
-
-import lombok.*;
-import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
-
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "usuario" , schema = "financas")

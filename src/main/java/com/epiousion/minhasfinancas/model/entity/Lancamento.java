@@ -2,6 +2,7 @@ package com.epiousion.minhasfinancas.model.entity;
 
 import com.epiousion.minhasfinancas.model.enums.StatusLancamento;
 import com.epiousion.minhasfinancas.model.enums.TipoLancamento;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,8 @@ import java.time.LocalDate;
 @Table(name = "lancamento", schema = "financas")
 @Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Lancamento {
 
     @Id
@@ -42,6 +45,7 @@ public class Lancamento {
     @Column(name = "data_cadastro")
     @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
     private LocalDate dataCadastro;
+
 
     @Column(name = "tipo")
     @Enumerated(value = EnumType.STRING)
